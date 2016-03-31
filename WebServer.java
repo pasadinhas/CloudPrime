@@ -12,11 +12,13 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import java.io.*;
+
 public class WebServer {
 
     public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/test", new VanillaHandler());
+        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+        server.createContext("/f.html", new VanillaHandler());
         server.setExecutor(java.util.concurrent.Executors.newCachedThreadPool()); // creates a default executor
         server.start();
         System.out.println("[INFO] SERVER SUCCESSFULLY STARTED!");
@@ -27,7 +29,9 @@ public class WebServer {
         public void handle(HttpExchange t) throws IOException {
             long threadId = Thread.currentThread().getId();
 
-            BigInteger query = new BigInteger(t.getRequestURI().getQuery());
+            String rawQuery = t.getRequestURI().getQuery();
+
+            BigInteger query = new BigInteger(rawQuery.split("=")[1]);// get the number
             System.out.println("[DEBUG] Thread " + threadId + " requested to factorize " + query);
             String response = "The prime factorization of " + t.getRequestURI().getQuery() + " is: " + primeFactorize(query);
             t.sendResponseHeaders(200, response.length());
@@ -39,6 +43,17 @@ public class WebServer {
         private String primeFactorize(BigInteger num) {
 
             System.out.println("[INFO] Factorizing " + num);
+
+            String output = num + " took ";
+            Writer outputWriter;
+            try {
+                outputWriter = new BufferedWriter(new FileWriter("log.txt", true));
+                outputWriter.append(output);
+                outputWriter.close();
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+            
 
             long startTime = System.currentTimeMillis();
 
@@ -65,28 +80,6 @@ public class WebServer {
             return outPut;
         }
 
-        public class IntFactorization {
-
-            private BigInteger zero = new BigInteger("0");
-            private BigInteger one = new BigInteger("1");
-            private BigInteger divisor = new BigInteger("2");
-            private ArrayList<BigInteger> factors = new ArrayList<BigInteger>();
-
-
-            ArrayList<BigInteger>  calcPrimeFactors(BigInteger num) {
-
-                if (num.compareTo(one)==0) {
-                    return factors;
-                }
-
-                while(num.remainder(divisor).compareTo(zero)!=0) {
-                    divisor = divisor.add(one);
-                }
-
-                factors.add(divisor);
-                return calcPrimeFactors(num.divide(divisor));
-            }
-        }
     }
 
 }
