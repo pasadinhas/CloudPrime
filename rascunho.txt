@@ -15,11 +15,11 @@
 
 ###É adicionada mais uma máquina quando
 
-A utilização do CPU do sistema cresce acima dos x%. Isto acontece pois pode estar eminente um pico de pedidos e é necessário ter tempo para ligar novas instâncias antes da carga máxima ser atingida.
+A utilização do CPU do sistema cresce acima dos 85% durante 120 segundos. Isto acontece pois pode estar eminente um pico de pedidos e é necessário ter tempo para ligar novas instâncias antes da carga máxima ser atingida.
 
 ###É removida uma instância quando
 
-A Utilização do CPU desce abaixo dos 40%, pois existem recursos subaproveitados que podem ser removidos.
+A Utilização do CPU desce abaixo dos 70% durant 120 segundos, pois existem recursos subaproveitados que podem ser removidos.
 
 ###Health Check
 
@@ -55,7 +55,7 @@ Para além disto pretendemos recolher no load balancer o número de pedidos a se
 
 ####Compilar o ficheiro *MyICount.java* com Java 4 e com a biblioteca BIT no classpath
 
-java [-cp <path to BIT>] -source 1.4 MyIcount.java
+java [-cp path/to/BIT] -source 1.4 MyIcount.java
 
 
 
@@ -67,7 +67,7 @@ java WebServer.java IntFactorization.java
 
 ####Instrumentar a class *IntFactorization.class* executando MyICount. Por omissão faz override da class instrumentada, na mesma pasta.
 
-java -XX:-UseSplitVerifier MyIcount [<output folder path>]
+java -XX:-UseSplitVerifier MyIcount [output/folder/path]
 
 
 ####Criar o ficheiro *log.txt* na directoria do servidor
