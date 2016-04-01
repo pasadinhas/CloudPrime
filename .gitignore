@@ -12,8 +12,8 @@ test
 *.war
 *.ear
 
-!checkpoint-g05/BIT/*.class
-!checkpoint-g05/BIT/*/*.class
+!checkpoint-g05/source/BIT/*.class
+!checkpoint-g05/source/BIT/*/*.class
 !checkpoint-g05/compiled/*.class
 
 
