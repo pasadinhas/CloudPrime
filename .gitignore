@@ -1,5 +1,7 @@
 test
 
+!checkpoint-g05
+
 .java-version
 *.class
 
