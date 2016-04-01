@@ -1,8 +1,15 @@
+#Checkpoint CloudPrime
+
+**Grupo5**
+
+**67077** Rui Botelho   
+**75714** Miguel Pasadinhas   
+**76012** Carlos Carvalho
+
+
 ##Gestão do Autoscaling Group
 
-###Grace Period
-
-x min
+###Grace Period = 3 min
 
 É cerca do dobro do tempo que o sistema leva a ficar operacional. Assim é um tempo razoável, pois não detecta falsos positivos frequentemente. Por outro lado, no pior dos casos uma máquina que esteja de facto a falhar é detectada um pouco mais tarde, o que é raro.
 
@@ -14,7 +21,25 @@ A utilização do CPU do sistema cresce acima dos x%. Isto acontece pois pode es
 
 A Utilização do CPU desce abaixo dos 40%, pois existem recursos subaproveitados que podem ser removidos.
 
-TODO HEALTH CHECK
+###Health Check
+
+####Timeout = 5 seg
+  
+É um valor superior ao standard (4seg) sendo mais permissivo, para ter em conta possíveis atrasos na rede.
+
+####Interval = 15 seg
+ 
+Pois é um valor que acreditamos não causar overload nas máquinas e permite uma monitorização de grão suficientemente fino.
+
+####Unhealthy Treshold = 6
+
+Este valor é permissivo o suficiente para permitir congestionamentos graves na rede durante 1m30, o que é possível acontecer, no entanto não nos parece ser demasiado permissivo.
+
+####Healthy Threshold = 3
+
+Acreditamos que se uma máquina responder com sucesso 3 vezes então está saudável.
+
+Este rácio de Tresholds parece-nos adequado para o tipo de serviço, dado que como é computacionalmente intensivo, a frequeência de respostas a pedidos não é tão elevada quanto em serviços web comuns.
 
 
 ##Métricas
