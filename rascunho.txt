@@ -19,7 +19,7 @@ A utilização do CPU do sistema cresce acima dos 85% durante 120 segundos. Isto
 
 ###É removida uma instância quando
 
-A Utilização do CPU desce abaixo dos 70% durant 120 segundos, pois existem recursos subaproveitados que podem ser removidos.
+A Utilização do CPU desce abaixo dos 70% durante 120 segundos, pois existem recursos subaproveitados que podem ser removidos.
 
 ###Health Check
 

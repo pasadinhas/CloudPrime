@@ -6,3 +6,132 @@
 2 took 34 instructions
 928301 took 1350283 instructions
 3827455 took 644676 instructions
+1 took 8 instructions
+1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 1 took 3 instructions
+34 took 94 instructions
+9847 took 1155 instructions
+9847 took 1154 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 9847 took 1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 9847 took 1154 instructions
+9847 took 1154 instructions
+9847 took 1154 instructions
+1154 instructions
+1154 instructions
+9847 took 1154 instructions
+9847 took 1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 9847 took 9847 took 1154 instructions
+9847 took 9847 took 9847 took 9847 took 1154 instructions
+9847 took 1154 instructions
+1154 instructions
+9847 took 9847 took 9847 took 9847 took 1155 instructions
+9847 took 1155 instructions
+1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+1155 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 9847 took 1155 instructions
+1155 instructions
+1155 instructions
+9847 took 1155 instructions
+9847 took 1155 instructions
+9847 took 9847 took 9847 took 1155 instructions
+9847 took 1155 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+1155 instructions
+9847 took 9847 took 9847 took 1155 instructions
+9847 took 1155 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+1154 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+1155 instructions
+9847 took 1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+9847 took 9847 took 9847 took 9847 took 1155 instructions
+9847 took 1155 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+1154 instructions
+1155 instructions
+9847 took 1155 instructions
+1155 instructions
+9847 took 9847 took 1155 instructions
+1155 instructions
+1155 instructions
+9847 took 9847 took 9847 took 1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions
+1155 instructions

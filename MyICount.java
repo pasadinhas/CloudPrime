@@ -1,4 +1,6 @@
 import BIT.highBIT.*;
+import org.omg.PortableServer.THREAD_POLICY_ID;
+
 import java.io.*;
 import java.util.*;
 import java.io.BufferedWriter;
@@ -8,7 +10,8 @@ import java.io.Writer;
 
 public class MyICount {
     private static PrintStream out = null;
-    private static int i_count = 0, b_count = 0, m_count = 0;
+    private static Map counter = new HashMap();
+    private static int b_count = 0, m_count = 0;
     
     public static void main(String argv[]) {
         
@@ -20,14 +23,12 @@ public class MyICount {
             if (!routine.getMethodName().equals("calcPrimeFactors")) continue;
 
             System.err.println("Method name: " + routine.getMethodName());
-	        routine.addBefore("MyICount", "mcount", new Integer(1));
-            //routine.addBefore("MyICount", "printArg", new Integer(0))
 
             routine.addAfter("MyICount", "printICount", routine.getMethodName());
             
             for (Enumeration b = routine.getBasicBlocks().elements(); b.hasMoreElements(); ) {
                 BasicBlock bb = (BasicBlock) b.nextElement();
-                bb.addBefore("MyICount", "count", new Integer(bb.size()));
+                bb.addBefore("MyICount", "count", new Integer(1));
             }
         }
 
@@ -41,9 +42,10 @@ public class MyICount {
     
     public static synchronized void printICount(String foo) {
         //System.out.println(i_count + " instructions in " + b_count + " basic blocks were executed in " + m_count + " methods.");
-
-        if (i_count < 2) {
-            i_count = 0;
+        Long threadID = new Long(Thread.currentThread().getId());
+        Integer i_count = (Integer) counter.get(threadID);
+        if (i_count.intValue() < 2) {
+            counter.put(threadID, new Integer(0));
             return;
         }
 
@@ -56,14 +58,19 @@ public class MyICount {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        i_count = 0;
+        counter.put(threadID, new Integer(0));
 
     }
     
 
     public static synchronized void count(int incr) {
-        i_count += incr;
-        b_count++;
+        Long threadID = new Long(Thread.currentThread().getId());
+        Integer current = (Integer) counter.get(threadID);
+        if (current == null) {
+            current = new Integer(0);
+        }
+        Integer newValue = new Integer(current.intValue() + incr);
+        counter.put(threadID, newValue);
     }
 
     public static synchronized void mcount(int incr) {
