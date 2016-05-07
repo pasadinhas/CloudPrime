@@ -8,7 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.Writer;
 import java.util.concurrent.ThreadFactory;
-
+import cnv.DBWriter;
 
 public class MyICount {
     private static PrintStream out = null;
@@ -60,9 +60,11 @@ public class MyICount {
             outputWriter = new BufferedWriter(new FileWriter("log.txt", true));
             outputWriter.append(output);
             outputWriter.close();
+            DBWriter.write(""+input.get(threadID), ""+i_count);
         }catch (IOException e) {
             e.printStackTrace();
         }
+
         counter.put(threadID, new Integer(0));
 
     }
