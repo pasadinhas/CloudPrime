@@ -44,7 +44,7 @@ public class WebServer {
 
             System.out.println("[INFO] Factorizing " + num);
 
-            String output = num + " took ";
+            /*String output = num + " took ";
             Writer outputWriter;
             try {
                 outputWriter = new BufferedWriter(new FileWriter("log.txt", true));
@@ -52,13 +52,13 @@ public class WebServer {
                 outputWriter.close();
             }catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
             
 
             long startTime = System.currentTimeMillis();
 
-            IntFactorization factorizer = new IntFactorization();
-            ArrayList<BigInteger> result = factorizer.calcPrimeFactors(num);
+            IntFactorization factorizer = new IntFactorization(num);
+            ArrayList<BigInteger> result = factorizer.calcPrimeFactors();
 
             long totalTime = System.currentTimeMillis() - startTime;
 

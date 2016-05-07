@@ -2,15 +2,18 @@ import BIT.highBIT.*;
 import org.omg.PortableServer.THREAD_POLICY_ID;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.util.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.Writer;
+import java.util.concurrent.ThreadFactory;
 
 
 public class MyICount {
     private static PrintStream out = null;
     private static Map counter = new HashMap();
+    private static Map input = new HashMap();
     private static int b_count = 0, m_count = 0;
     
     public static void main(String argv[]) {
@@ -49,7 +52,9 @@ public class MyICount {
             return;
         }
 
-        String output = i_count + " instructions\n";
+
+
+        String output = input.get(threadID) + " took " + i_count + " instructions\n";
         Writer outputWriter;
         try {
             outputWriter = new BufferedWriter(new FileWriter("log.txt", true));
@@ -75,6 +80,11 @@ public class MyICount {
 
     public static synchronized void mcount(int incr) {
 		m_count++;
+    }
+
+    public static synchronized void registerInput(BigInteger num) {
+        Long threadID = new Long(Thread.currentThread().getId());
+        input.put(threadID, num);
     }
 
 }
