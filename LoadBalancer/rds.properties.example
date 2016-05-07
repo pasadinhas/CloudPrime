@@ -1,0 +1,4 @@
+url=cloudprime.ck29gj14uyvn.eu-west-1.rds.amazonaws.com:3306
+dbName=cloudprime
+username=master
+password=asdasd
