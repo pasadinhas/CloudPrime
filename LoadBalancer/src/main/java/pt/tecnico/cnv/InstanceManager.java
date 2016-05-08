@@ -30,6 +30,10 @@ public class InstanceManager {
             this.requests--;
         }
 
+        public Instance getInstance() {
+            return this.instance;
+        }
+
         public int getRequests() {
             return this.requests;
         }
@@ -75,8 +79,30 @@ public class InstanceManager {
         this.getInstanceData(name).addRequest(cost);
     }
 
+    public void removeInstanceRequest(Instance instance, BigInteger cost) {
+        this.removeInstanceRequest(instance.getInstanceId(), cost);
+    }
+
     public void removeInstanceRequest(String name, BigInteger cost) {
         this.getInstanceData(name).removeRequest(cost);
+    }
+
+    public Instance allocateInstance(BigInteger cost) {
+        InstanceData chosen = null;
+        for (InstanceData instanceData : instances.values()) {
+            if (chosen == null) {
+                chosen = instanceData;
+                continue;
+            }
+
+            chosen = bestInstanceFor(cost, chosen, instanceData);
+        }
+        chosen.addRequest(cost);
+        return chosen.getInstance();
+    }
+
+    private InstanceData bestInstanceFor(BigInteger cost, InstanceData instanceData1, InstanceData instanceData2) {
+        return (instanceData1.getCost().compareTo(instanceData2.getCost()) < 0) ? instanceData1 : instanceData2;
     }
 
     public void updateInstances(Set<Instance> instances) {
