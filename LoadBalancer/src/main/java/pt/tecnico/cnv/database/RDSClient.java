@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class RDSClient {
 
-    public static final String TABLE = "data";
+    public static final String TABLE = "metrics";
     public static final String NUM_COL = "num";
     public static final String BB_COL = "bbs";
 
@@ -72,8 +72,8 @@ public class RDSClient {
 
     public ResultSet queryNumbersNextTo(BigInteger number) {
         final String bigInt = number.toString();
-        final String sqlQueryGE = "SELECT * FROM "+ TABLE +" WHERE "+NUM_COL+" >= " + bigInt + " LIMIT 3";
-        final String sqlQueryLE = "SELECT * FROM "+ TABLE +" WHERE "+NUM_COL+" <= " + bigInt + " LIMIT 3";
+        final String sqlQueryGE = "SELECT * FROM "+ TABLE +" WHERE "+NUM_COL+" >= " + bigInt + " ORDER BY "+NUM_COL+" ASC LIMIT 3";
+        final String sqlQueryLE = "SELECT * FROM "+ TABLE +" WHERE "+NUM_COL+" <= " + bigInt + " ORDER BY "+NUM_COL+" DESC LIMIT 3";
         final String sqlQuery = "(" + sqlQueryGE + ") UNION (" + sqlQueryLE + ")";
         try {
             return this.connection.createStatement().executeQuery(sqlQuery);

@@ -21,6 +21,7 @@ import static java.util.stream.Collectors.toSet;
 public class UpdateInstances implements Runnable {
 
     public static final int WAIT_MILLIS = 30000;
+    public static final String EC2_EU_WEST_1_AMAZONAWS_COM = "ec2.eu-west-1.amazonaws.com";
     LoadBalancer loadBalancer = null;
     AmazonEC2Client ec2 = null;
 
@@ -43,7 +44,7 @@ public class UpdateInstances implements Runnable {
         }
 
         ec2 = new AmazonEC2Client(credentials);
-        ec2.setEndpoint("ec2.eu-west-1.amazonaws.com");
+        ec2.setEndpoint(EC2_EU_WEST_1_AMAZONAWS_COM);
 
         this.update();
         loadBalancer.serve();
