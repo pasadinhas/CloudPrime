@@ -18,9 +18,8 @@ public class IntFactorization {
     }
 
     ArrayList<BigInteger>  calcPrimeFactors(BigInteger num) {
-
         if (num.compareTo(one)==0) {
-            MyICount.registerInput(initialArg);
+            MyICount.registerInput(""+initialArg);
             return factors;
         }
 

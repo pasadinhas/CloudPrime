@@ -10,4 +10,6 @@ mvn package
 
 cd ..
 
+#update mysql.config to proper database
+
 ./build.sh

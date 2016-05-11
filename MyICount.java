@@ -47,26 +47,19 @@ public class MyICount {
         //System.out.println(i_count + " instructions in " + b_count + " basic blocks were executed in " + m_count + " methods.");
         Long threadID = new Long(Thread.currentThread().getId());
         Integer i_count = (Integer) counter.get(threadID);
-        if (i_count.intValue() < 2) {
+        if (i_count.equals("0") || i_count.equals("1")) {
             counter.put(threadID, new Integer(0));
             return;
         }
+        try { 
+            //System.out.println("Did not write to DB: "+input.get(threadID)+" "+i_count);
 
-
-
-        String output = input.get(threadID) + " took " + i_count + " instructions\n";
-        Writer outputWriter;
-        try {
-            outputWriter = new BufferedWriter(new FileWriter("log.txt", true));
-            outputWriter.append(output);
-            outputWriter.close();
             DBWriter.write(""+input.get(threadID), ""+i_count);
         }catch (IOException e) {
+            System.out.println("Failed to write to databaste");
             e.printStackTrace();
         }
-
         counter.put(threadID, new Integer(0));
-
     }
     
 
@@ -84,7 +77,7 @@ public class MyICount {
 		m_count++;
     }
 
-    public static synchronized void registerInput(BigInteger num) {
+    public static synchronized void registerInput(String num) {
         Long threadID = new Long(Thread.currentThread().getId());
         input.put(threadID, num);
     }

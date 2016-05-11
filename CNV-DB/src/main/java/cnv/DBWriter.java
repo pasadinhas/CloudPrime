@@ -14,51 +14,64 @@ import java.util.Properties;
  */
 public class DBWriter {
     public static Properties getProperties() throws IOException {
+        if(prop == null){
+            String versionString = null;
 
-        String versionString = null;
+            //to load application's properties, we use this class
+            Properties mainProperties = new Properties();
 
-        //to load application's properties, we use this class
-        Properties mainProperties = new Properties();
+            FileInputStream file;
 
-        FileInputStream file;
+            //the base folder is ./, the root of the main.properties file
+            String path = "./mysql.config";
 
-        //the base folder is ./, the root of the main.properties file
-        String path = "./mysql.config";
+            //load the file handle for main.properties
+            file = new FileInputStream(path);
 
-        //load the file handle for main.properties
-        file = new FileInputStream(path);
+            //load all the properties from this file
+            mainProperties.load(file);
 
-        //load all the properties from this file
-        mainProperties.load(file);
+            //we have loaded the properties, so close the file handle
+            file.close();
 
-        //we have loaded the properties, so close the file handle
-        file.close();
-
-        //retrieve the property we are intrested, the app.version
-        return mainProperties;
+            //retrieve the property we are intrested, the app.version
+            prop = mainProperties;
+        }
+        return prop;
     }
 
     private static Properties prop = null;
 
-    public static synchronized void write(String input, String bb) throws IOException {
-        if(prop == null){
-            prop = getProperties();
-        }
-        String confUrl = prop.getProperty("url");
-        String dbName = prop.getProperty("dbName");
-        String username = prop.getProperty("username");
-        String password = prop.getProperty("password");
-        String url = "jdbc:mysql://" + confUrl + "/" + dbName;
+    private static Connection connection = null;
 
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+    public static Connection getConnection() throws IOException {
+        if(connection == null){
+            getProperties();
+            String confUrl = prop.getProperty("url");
+            String dbName = prop.getProperty("dbName");
+            String username = prop.getProperty("username");
+            String password = prop.getProperty("password");
+            String url = "jdbc:mysql://" + confUrl + "/" + dbName;
+            try {
+                connection = DriverManager.getConnection(url, username, password);            
+            } catch (SQLException e) {
+                throw new IOException("Cannot connect the database!", e);
+            }
+        }
+        return connection;        
+    }
+
+    public static synchronized void write(String input, String bb) throws IOException {
+        getConnection();
+        try {           
             Statement stmt = connection.createStatement();
             stmt.execute(String.format("insert into metrics values (%s,%s)",input, bb));
             stmt.close();
         } catch(SQLIntegrityConstraintViolationException e){
             // Insert same value twice exception, no worries
             //System.out.println("already in whats the worry?");
-        } catch (SQLException e) {
-            throw new IllegalStateException("Cannot connect the database!", e);
+        }catch (SQLException e) {
+                throw new IOException("Cannot insert into database!", e);
         }
     }
 
@@ -67,7 +80,9 @@ public class DBWriter {
             System.out.println("Need two parameters");
             System.exit(0);
         }
-        write(""+BigInteger.valueOf(Long.parseLong(args[0])),
-                ""+BigInteger.valueOf(Long.parseLong(args[1])));
+        String input = ""+BigInteger.valueOf(Long.parseLong(args[0]));
+        String bb = ""+BigInteger.valueOf(Long.parseLong(args[1]));
+        System.out.println("input:"+input+" bb:"+bb);
+        write(input,bb);
     }
 }

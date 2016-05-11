@@ -59,7 +59,7 @@ public class WebServer {
 
             IntFactorization factorizer = new IntFactorization(num);
             ArrayList<BigInteger> result = factorizer.calcPrimeFactors();
-
+            System.out.println("Testing...");
             long totalTime = System.currentTimeMillis() - startTime;
 
             System.out.println("[INFO] Factorized " + num + " in " + totalTime + "ms!");
